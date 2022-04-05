@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <stbool.h>
+#include <stdbool.h>
 
 typedef enum {
   TWO = 2,
