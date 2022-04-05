@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stbool.h>
 
 typedef enum {
   TWO = 2,
@@ -14,24 +15,32 @@ typedef enum {
 typedef struct {
   Rank rank;
   Suit suit;
+  bool is_dealt;
 } Card;
 
-void print_card(Card card) {
-  /* _______ */
-  /*|A      |*/
-  /*|       |*/
-  /*|       |*/
-  /*|   ♠   |*/
-  /*|       |*/
-  /*|       |*/
-  /*|______A|*/
-  printf("%d, ", card.rank);
-  printf("%d\n", card.suit);
+void render_card(Card card) {
+
+  /* _______ 
+    |A      |
+    |       |
+    |       |
+    |   S   |
+    |       |
+    |       |
+    |______A| */
+
+  printf( "_______\n");
+  printf("|A      |\n");
+  printf("|       |\n");
+  printf("|       |\n");
+  printf("|   S   |\n");
+  printf("|       |\n");
+  printf("|       |\n");
+  printf("|______A|\n");
 }
 
 int main(void) {
   Card a_of_s = {ACE, SPADES};
   print_card(a_of_s);
-  printf("Hello, world");
   return 0;
 }
