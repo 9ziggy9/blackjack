@@ -29,7 +29,7 @@ void render_card(Card card) {
     |       |
     |______A| */
 
-  printf( "_______\n");
+  printf(" _______\n");
   printf("|A      |\n");
   printf("|       |\n");
   printf("|       |\n");
@@ -41,6 +41,6 @@ void render_card(Card card) {
 
 int main(void) {
   Card a_of_s = {ACE, SPADES};
-  print_card(a_of_s);
+  render_card(a_of_s);
   return 0;
 }
