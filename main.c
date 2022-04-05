@@ -5,6 +5,13 @@ typedef struct {
   char rank;
 } Card;
 
+typedef enum {
+  TWO = 2,
+  THREE, FOUR, FIVE, SIX,
+  SEVEN, EIGHT, NINE, TEN,
+  JACK, QUEEN, KING, ACE
+};
+
 void print_card(Card card) {
   /* _______ */
   /*|A      |*/
@@ -14,7 +21,6 @@ void print_card(Card card) {
   /*|       |*/
   /*|       |*/
   /*|______A|*/
-
 }
 
 int main(void) {
