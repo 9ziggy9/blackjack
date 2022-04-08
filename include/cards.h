@@ -1,6 +1,12 @@
 #ifndef CARDS_H_
 #define CARDS_H_
 
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <time.h>
+#include "../include/cards.h"
+
 typedef enum {
   TWO = 2,
   THREE, FOUR, FIVE, SIX,
