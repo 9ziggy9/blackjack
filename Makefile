@@ -2,7 +2,7 @@ INCLUDES=-I ./include
 CFLAGS=-Wall -ggdb -std=c11 -pedantic
 OBJECTS=./build/game.o ./build/cards.o
 
-all: card game blackjack
+all: game card blackjack
 
 blackjack: main.c $(OBJECTS)
 	$(CC) $(INCLUDES) $(CFLAGS) main.c $(OBJECTS) $(LIBS) -o blackjack

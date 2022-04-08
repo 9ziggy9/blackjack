@@ -7,14 +7,11 @@ typedef enum {
   DEALER
 } Player;
 
-
 typedef struct {
   int num_cards;
   Card cards[12];
   Player player;
 } Hand;
-
-extern Card NULL_CARD;
 
 Card deal_top_card(Deck *deck);
 Hand new_hand();

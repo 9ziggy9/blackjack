@@ -30,6 +30,8 @@ typedef struct {
   Card cards[52];
 } Deck;
 
+extern Card NULL_CARD;
+
 char rank_to_symbol(Card card);
 char suit_to_symbol(Card card);
 Deck assemble_deck();
