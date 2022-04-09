@@ -2,7 +2,7 @@
 
 Card NULL_CARD = {NULL_CARD_R, NULL_CARD_S, false};
 
-Card deal_top_card(Deck *deck) {
+static Card deal_top_card(Deck *deck) {
   int location = 0;
   while (location < 52) {
     if (!deck->cards[location].is_dealt) {
@@ -18,6 +18,15 @@ Card deal_top_card(Deck *deck) {
   return NULL_CARD;
 }
 
+static void append_to_hand(Hand *hand, Card card) {
+  int location = 0;
+  while (location++ < 12) {
+    if (!hand->cards[location].is_dealt) {
+      hand->cards[location] = card;
+    }
+  }
+}
+
 Hand new_hand() {
   Hand hand;
   int location = 0;
@@ -25,15 +34,6 @@ Hand new_hand() {
     hand.cards[location] = NULL_CARD;
   }
   return hand;
-}
-
-void append_to_hand(Hand *hand, Card card) {
-  int location = 0;
-  while (location++ < 12) {
-    if (!hand->cards[location].is_dealt) {
-      hand->cards[location] = card;
-    }
-  }
 }
 
 void hit_hand(Hand *hand, Deck *deck) {

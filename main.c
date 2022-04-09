@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <time.h>
 #include "./include/cards.h"
 #include "./include/game.h"
 
@@ -8,6 +9,19 @@ int main(void) {
 
   Deck deck = assemble_deck();
   print_deck(deck);
+
+  Hand player_hand;
+  Hand dealer_hand;
+
+  hit_hand(&player_hand, &deck);
+  hit_hand(&dealer_hand, &deck);
+
+  print_deck(deck);
+
+  printf("PLAYER HAND: ");
+  print_hand(player_hand);
+  printf("DEALER HAND: ");
+  print_hand(dealer_hand);
 
   return 0;
 }

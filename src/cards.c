@@ -62,6 +62,7 @@ void print_deck(Deck deck) {
 	                 deck.cards[i].is_dealt ? "true" : "false");
     printf(" }");
   }
+  printf("\n");
 }
 
 void render_card(Card card) {

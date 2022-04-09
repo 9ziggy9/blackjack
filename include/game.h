@@ -13,9 +13,7 @@ typedef struct {
   Player player;
 } Hand;
 
-Card deal_top_card(Deck *deck);
 Hand new_hand();
-void append_to_hand(Hand *hand, Card card);
 void hit_hand(Hand *hand, Deck *deck);
 void print_hand(Hand hand);
 
