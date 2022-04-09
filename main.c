@@ -2,6 +2,7 @@
 #include <time.h>
 #include "./include/cards.h"
 #include "./include/game.h"
+#include <ncurses.h>
 
 int main(void) {
   // seed random number generator
