@@ -1,24 +1,30 @@
 #ifndef CARDS_H_
 #define CARDS_H_
 
-#include <stdio.h>
+#include "../include/cards.h"
 #include <stdbool.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../include/cards.h"
 
 typedef enum {
   TWO = 2,
-  THREE, FOUR, FIVE, SIX,
-  SEVEN, EIGHT, NINE, TEN,
-  JACK, QUEEN, KING, ACE,
+  THREE,
+  FOUR,
+  FIVE,
+  SIX,
+  SEVEN,
+  EIGHT,
+  NINE,
+  TEN,
+  JACK,
+  QUEEN,
+  KING,
+  ACE,
   NULL_CARD_R
 } Rank;
 
-typedef enum {
-  HEARTS, CLUBS, DIAMONDS, SPADES,
-  NULL_CARD_S
-} Suit;
+typedef enum { HEARTS, CLUBS, DIAMONDS, SPADES, NULL_CARD_S } Suit;
 
 typedef struct {
   Rank rank;
@@ -38,6 +44,6 @@ Deck assemble_deck();
 void swap(Card *a, Card *b);
 void shuffle_deck(Deck *deck);
 void print_deck(Deck deck);
-void render_card(Card card);
+void print_card(Card card);
 
 #endif // CARDS_H_

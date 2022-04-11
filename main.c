@@ -1,8 +1,8 @@
-#include <stdio.h>
-#include <time.h>
 #include "./include/cards.h"
 #include "./include/game.h"
-#include <ncurses.h>
+#include "./include/render.h"
+#include <stdio.h>
+#include <time.h>
 
 int main(void) {
   // seed random number generator
@@ -36,6 +36,8 @@ int main(void) {
   print_hand(player_hand);
   printf("DEALER HAND: ");
   print_hand(dealer_hand);
+
+  render_card();
 
   return 0;
 }
