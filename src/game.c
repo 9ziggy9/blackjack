@@ -30,8 +30,9 @@ static void append_to_hand(Hand *hand, Card card) {
   }
 }
 
-Hand new_hand() {
+Hand new_hand(Player player) {
   Hand hand;
+  hand.player = player;
   for (int i = 0; i < 12; i++) {
     hand.cards[i] = NULL_CARD;
   }

@@ -13,8 +13,8 @@ int main(void) {
   shuffle_deck(&deck);
   print_deck(deck);
 
-  Hand player_hand = new_hand();
-  Hand dealer_hand = new_hand();
+  Hand player_hand = new_hand(PLAYER);
+  Hand dealer_hand = new_hand(DEALER);
   print_hand(player_hand);
   print_hand(dealer_hand);
 
@@ -43,6 +43,7 @@ int main(void) {
 
   while((ch = getch() != 'q')) {
     render_hand(player_hand);
+    render_hand(dealer_hand);
     refresh();
   }
 

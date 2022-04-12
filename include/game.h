@@ -13,7 +13,7 @@ typedef struct {
   Player player;
 } Hand;
 
-Hand new_hand();
+Hand new_hand(Player player);
 void hit_hand(Hand *hand, Deck *deck);
 void print_hand(Hand hand);
 

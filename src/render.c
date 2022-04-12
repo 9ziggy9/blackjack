@@ -37,5 +37,28 @@ static void render_bottom_card(const Card card, int x, int y) {
 }
 
 void render_hand(const Hand hand) {
-  render_top_card(hand.cards[0], PHAND1_X, PHAND1_Y);
+  int hand_origin_x;
+  int hand_origin_y;
+
+  switch(hand.player) {
+    case PLAYER:
+      hand_origin_x = PHAND1_X;
+      hand_origin_y = PHAND1_Y;
+      break;
+    case DEALER:
+      hand_origin_x = DHAND_X;
+      hand_origin_y = DHAND_Y;
+      break;
+    default:
+      assert(0 && "what the fuck happened?");
+  }
+
+  int location = 0;
+  while(hand.cards[location+1].is_dealt) {
+    render_bottom_card(hand.cards[location], hand_origin_x + 2 * location,
+					     hand_origin_y - location);
+    location++;
+  }
+  render_top_card(hand.cards[location], PHAND1_X + 2 * location,
+					PHAND1_Y - location);
 }
