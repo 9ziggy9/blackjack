@@ -11,37 +11,32 @@ int main(void) {
 
   Deck deck = assemble_deck();
   shuffle_deck(&deck);
-  print_deck(deck);
 
   Hand player_hand = new_hand(PLAYER);
   Hand dealer_hand = new_hand(DEALER);
-  print_hand(player_hand);
-  print_hand(dealer_hand);
 
-  hit_hand(&player_hand, &deck);
-  hit_hand(&dealer_hand, &deck);
+  /* hit_hand(&player_hand, &deck); */
+  /* hit_hand(&dealer_hand, &deck); */
 
-  print_deck(deck);
-
-  printf("PLAYER HAND: ");
-  print_hand(player_hand);
-  printf("DEALER HAND: ");
-  print_hand(dealer_hand);
-
-  hit_hand(&player_hand, &deck);
-  hit_hand(&dealer_hand, &deck);
-
-  print_deck(deck);
-
-  printf("PLAYER HAND: ");
-  print_hand(player_hand);
-  printf("DEALER HAND: ");
-  print_hand(dealer_hand);
+  /* hit_hand(&player_hand, &deck); */
+  /* hit_hand(&dealer_hand, &deck); */
 
   // initialize curses system
   render_init();
 
-  while((ch = getch() != 'q')) {
+  bool quit = false;
+  while(!quit) {
+    switch((ch = getch())) {
+      case 'q':
+	quit = true;
+	break;
+      case 'h':
+	hit_hand(&player_hand, &deck);
+	break;
+      default:
+	assert(0 && "you haven't implemented other keys");
+    }
+
     render_hand(player_hand);
     render_hand(dealer_hand);
     refresh();
