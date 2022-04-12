@@ -38,14 +38,11 @@ int main(void) {
   printf("DEALER HAND: ");
   print_hand(dealer_hand);
 
-  Card card = {ACE, SPADES};
-
   // initialize curses system
   render_init();
 
   while((ch = getch() != 'q')) {
-    render_bottom_card(card, 3, 20);
-    render_top_card(card, 5, 19);
+    render_hand(player_hand);
     refresh();
   }
 
