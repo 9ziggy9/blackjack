@@ -1,15 +1,29 @@
 #include "../include/render.h"
 
-/* void render_card(Card card, int height, int width, */
-/* 		 int origin_y, int origin_x) */
-/* { */
-/*   mvprintw(origin_y + 1, origin_x - width + 2, "%c    ", 'h'); */
-/*   mvprintw(origin_y + 2, origin_x - width + 2, "  %c  ", 'l'); */
-/*   mvprintw(origin_y + 3, origin_x - width + 2, "     %c", 'o'); */
-/* } */
+static int PHAND1_X = 5;
+static int PHAND1_Y = 5;
 
-void render_card() {
-  mvprintw(30, 30, "%c", 'h');
-  mvprintw(35, 35, "%c", 'l');
-  mvprintw(40, 40, "%c", 'k');
+void render_phand1(Card card) {
+  mvprintw(PHAND1_Y, PHAND1_X,          "_______");
+  mvprintw(PHAND1_Y + 1, PHAND1_X - 1, "|%c      |",
+	   rank_to_symbol(card));
+  mvprintw(PHAND1_Y + 2, PHAND1_X - 1, "|       |");
+  mvprintw(PHAND1_Y + 3, PHAND1_X - 1, "|   %c   |",
+	   suit_to_symbol(card));
+  mvprintw(PHAND1_Y + 4, PHAND1_X - 1, "|       |");
+  mvprintw(PHAND1_Y + 5, PHAND1_X - 1, "|______%c|",
+	   rank_to_symbol(card));
+}
+
+void render_init() {
+  initscr();
+  cbreak();
+  keypad(stdscr, TRUE);
+  curs_set(0);
+  printw("Hello, world");
+  refresh();
+}
+
+void render_destroy() {
+  endwin();
 }

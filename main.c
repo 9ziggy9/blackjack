@@ -7,6 +7,7 @@
 int main(void) {
   // seed random number generator
   srand(time(NULL));
+  char ch;
 
   Deck deck = assemble_deck();
   shuffle_deck(&deck);
@@ -37,7 +38,16 @@ int main(void) {
   printf("DEALER HAND: ");
   print_hand(dealer_hand);
 
-  render_card();
+  Card card = {ACE, SPADES};
 
+  // initialize curses system
+  render_init();
+
+  while((ch = getch() != 'q')) {
+    render_phand1(card);
+    refresh();
+  }
+
+  render_destroy();
   return 0;
 }

@@ -8,9 +8,8 @@
 #include <stdlib.h>
 #include <time.h>
 
-/* void render_card(Card card, int height, int width, */
-/* 		 int origin_y, int origin_x); */
-
-void render_card();
+void render_phand1(Card card);
+void render_init();
+void render_destroy();
 
 #endif // RENDER_H_
