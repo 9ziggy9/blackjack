@@ -54,7 +54,7 @@ void render_hand(const Hand hand) {
   }
 
   int location = 0;
-  while(hand.cards[location+1].is_dealt) {
+  while(location < hand.num_cards - 1) {
     render_bottom_card(hand.cards[location], hand_origin_x + 2 * location,
 					     hand_origin_y - location);
     location++;

@@ -1,6 +1,7 @@
 #ifndef GAME_H_
 #define GAME_H_
 #include "./cards.h"
+#include <assert.h>
 
 typedef enum {
   PLAYER,

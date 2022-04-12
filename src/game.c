@@ -32,6 +32,7 @@ static void append_to_hand(Hand *hand, Card card) {
 
 Hand new_hand(Player player) {
   Hand hand;
+  hand.num_cards = 0;
   hand.player = player;
   for (int i = 0; i < 12; i++) {
     hand.cards[i] = NULL_CARD;
@@ -41,6 +42,8 @@ Hand new_hand(Player player) {
 
 void hit_hand(Hand *hand, Deck *deck) {
   int location = 0;
+  assert(hand->num_cards < 12);
+  hand->num_cards++;
   Card hit_card = deal_top_card(deck);
   append_to_hand(hand, hit_card);
 }
