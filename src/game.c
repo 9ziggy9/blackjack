@@ -32,7 +32,7 @@ static void append_to_hand(Hand *hand, Card card) {
 
 Hand new_hand(Player player) {
   Hand hand;
-  hand.num_cards = 0;
+  hand.score = 0;
   hand.player = player;
   for (int i = 0; i < 12; i++) {
     hand.cards[i] = NULL_CARD;
@@ -40,18 +40,23 @@ Hand new_hand(Player player) {
   return hand;
 }
 
-int hit_hand(Hand *hand, Deck *deck) {
-  int location = 0;
-  // this error code will indicate to event loop that it needs
-  // to move to endwin() stage via goto statement
-  if (!(hand->num_cards < 12)) return 1;
+HandState hit_hand(Hand *hand, Deck *deck) {
+  // assertion to guard hit_hand() exposure for busted hands
+  assert(hand->score < 22 && "\nHow did you get here? You busted.");
 
-  hand->num_cards++;
+  int location = 0;
 
   Card hit_card = deal_top_card(deck);
   append_to_hand(hand, hit_card);
 
-  return 0;
+  // this return code will indicate to event loop that it needs
+  // to move to endwin() stage via goto statement
+  if (hand->score > 21) return BUSTED;
+
+  hand->score += hit_card.rank;
+  hand->num_cards++;
+
+  return IN_ACTION;
 }
 
 void print_hand(Hand hand) {

@@ -6,7 +6,8 @@ OBJECTS=./build/game.o ./build/cards.o ./build/render.o
 LIBS=-lncurses
 BIN_DIR=$(HOME)/bin
 
-# First checking to see if BIN_DIR even exists
+all: game card render blackjack
+
 .ONESHELL:
 install: game card render main.c $(OBJECTS)
 	@echo
@@ -36,8 +37,6 @@ else
 	echo 
 	echo -e "\033[1;32m --- Installation Successful ---"
 endif
-
-all: game card render blackjack
 
 blackjack: main.c $(OBJECTS)
 	$(CC) $(INCLUDES) $(CFLAGS) main.c $(OBJECTS) $(LIBS) -o blackjack

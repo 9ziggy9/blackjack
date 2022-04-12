@@ -25,7 +25,8 @@ int main(void) {
 	quit = true;
 	break;
       case 'h':
-	if(hit_hand(&player_hand, &deck) == 1) {
+	if(hit_hand(&player_hand, &deck) == BUSTED) {
+	  printf("that is a bust\n");
 	  printf("now you fucked up\n");
 	  goto exit_now;
 	}
