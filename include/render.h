@@ -9,6 +9,7 @@
 #include <time.h>
 
 void render_top_card(Card card, int x, int y);
+void render_bottom_card(Card card, int x, int y);
 void render_init();
 void render_destroy();
 
