@@ -6,6 +6,37 @@ OBJECTS=./build/game.o ./build/cards.o ./build/render.o
 LIBS=-lncurses
 BIN_DIR=$(HOME)/bin
 
+# First checking to see if BIN_DIR even exists
+.ONESHELL:
+install: game card render main.c $(OBJECTS)
+	@echo
+	echo "--- Building blackjack in $(BIN_DIR) ---"
+	echo -e '\033[0;37m' #dark gray
+	read -p "Proceed with install (y/N)? " choice; \
+	if [[ $$choice != "y" ]]; then echo "INSTALL ABORTED"; \
+	exit; fi
+ifneq ("$(wildcard $(BIN_DIR))", "")
+	echo -e '\033[0;32m' #green
+	echo "Compiling ---> $(BIN_DIR)/blackjack"
+	echo -e '\033[0;37m' #dark gray
+	echo "$(CC) $(INCLUDES) $(CFLAGS) main.c $(OBJECTS) $(LIBS) -o $(BIN_DIR)/blackjack"
+	echo -e '\033[0;37m' #bright white
+	$(CC) $(INCLUDES) $(CFLAGS) main.c $(OBJECTS) $(LIBS) -o $(BIN_DIR)/blackjack
+	echo -e "\033[1;32m --- Installation Successful ---"
+else
+	echo 
+	echo -e "\033[0;31mWARNING\033[0m: $(BIN_DIR) does not exist."
+	echo -e "\033[0;32mCreating $(BIN_DIR) now.\033[0;37m"
+	echo "mkdir -p $(BIN_DIR)"
+	mkdir -p $(BIN_DIR)
+	echo
+	echo -e "\033[0mCompiling ---> $(BIN_DIR)/blackjack\033[0;37m"
+	echo "$(CC) $(INCLUDES) $(CFLAGS) main.c $(OBJECTS) $(LIBS) -o $(BIN_DIR)/blackjack"
+	$(CC) $(INCLUDES) $(CFLAGS) main.c $(OBJECTS) $(LIBS) -o $(BIN_DIR)/blackjack
+	echo 
+	echo -e "\033[1;32m --- Installation Successful ---"
+endif
+
 all: game card render blackjack
 
 blackjack: main.c $(OBJECTS)
@@ -25,10 +56,6 @@ debug: game card render main.c $(OBJECTS)
 
 opt: game card render main.c $(OBJECTS)
 	$(CC) $(INCLUDES) $(CFLAGS) $(OFLAGS) main.c $(OBJECTS) $(LIBS) -o blackjack
-
-install: game card render main.c $(OBJECTS)
-	$(info Installing to home bin directory ---> $(BIN_DIR))
-	$(CC) $(INCLUDES) $(CFLAGS) main.c $(OBJECTS) $(LIBS) -o $(BIN_DIR)/blackjack
 
 uninstall: clean
 	rm -rf $(BIN_DIR)/blackjack
