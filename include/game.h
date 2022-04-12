@@ -15,7 +15,7 @@ typedef struct {
 } Hand;
 
 Hand new_hand(Player player);
-void hit_hand(Hand *hand, Deck *deck);
+int hit_hand(Hand *hand, Deck *deck);
 void print_hand(Hand hand);
 
 #endif //GAME_H_ 

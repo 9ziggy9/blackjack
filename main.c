@@ -31,10 +31,14 @@ int main(void) {
 	quit = true;
 	break;
       case 'h':
-	hit_hand(&player_hand, &deck);
+	if(hit_hand(&player_hand, &deck) == 1) {
+	  printf("now you fucked up\n");
+	  goto exit_now;
+	}
 	break;
       default:
-	assert(0 && "you haven't implemented other keys");
+	printf("you have fucked up now\n");
+	goto exit_now;
     }
 
     render_hand(player_hand);
@@ -42,6 +46,7 @@ int main(void) {
     refresh();
   }
 
+exit_now:
   render_destroy();
   return 0;
 }

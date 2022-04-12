@@ -40,12 +40,18 @@ Hand new_hand(Player player) {
   return hand;
 }
 
-void hit_hand(Hand *hand, Deck *deck) {
+int hit_hand(Hand *hand, Deck *deck) {
   int location = 0;
-  assert(hand->num_cards < 12);
+  // this error code will indicate to event loop that it needs
+  // to move to endwin() stage via goto statement
+  if (!(hand->num_cards < 12)) return 1;
+
   hand->num_cards++;
+
   Card hit_card = deal_top_card(deck);
   append_to_hand(hand, hit_card);
+
+  return 0;
 }
 
 void print_hand(Hand hand) {

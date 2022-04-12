@@ -50,7 +50,7 @@ void render_hand(const Hand hand) {
       hand_origin_y = DHAND_Y;
       break;
     default:
-      assert(0 && "what the fuck happened?");
+      assert(0 && "what the fuck happened?\n");
   }
 
   int location = 0;
