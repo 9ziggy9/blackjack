@@ -59,6 +59,6 @@ void render_hand(const Hand hand) {
 					     hand_origin_y - location);
     location++;
   }
-  render_top_card(hand.cards[location], PHAND1_X + 2 * location,
-					PHAND1_Y - location);
+  render_top_card(hand.cards[location], hand_origin_x + 2 * location,
+					hand_origin_y - location);
 }
