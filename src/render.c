@@ -1,9 +1,9 @@
 #include "../include/render.h"
 
-static int PHAND1_X = 5;
-static int PHAND1_Y = 20;
-static int DHAND_X = 5;
-static int DHAND_Y = 5;
+static const int PHAND1_X = 5;
+static const int PHAND1_Y = 20;
+static const int DHAND_X = 5;
+static const int DHAND_Y = 5;
 
 void render_init() {
   initscr();
