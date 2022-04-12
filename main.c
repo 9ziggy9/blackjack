@@ -15,12 +15,6 @@ int main(void) {
   Hand player_hand = new_hand(PLAYER);
   Hand dealer_hand = new_hand(DEALER);
 
-  /* hit_hand(&player_hand, &deck); */
-  /* hit_hand(&dealer_hand, &deck); */
-
-  /* hit_hand(&player_hand, &deck); */
-  /* hit_hand(&dealer_hand, &deck); */
-
   // initialize curses system
   render_init();
 
