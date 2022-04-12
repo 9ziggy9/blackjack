@@ -1,18 +1,17 @@
 #include "../include/render.h"
 
 static int PHAND1_X = 5;
-static int PHAND1_Y = 5;
+static int PHAND1_Y = 20;
+static int DHAND_X = 5;
+static int DHAND_Y = 5;
 
-void render_phand1(Card card) {
-  mvprintw(PHAND1_Y, PHAND1_X,          "_______");
-  mvprintw(PHAND1_Y + 1, PHAND1_X - 1, "|%c      |",
-	   rank_to_symbol(card));
-  mvprintw(PHAND1_Y + 2, PHAND1_X - 1, "|       |");
-  mvprintw(PHAND1_Y + 3, PHAND1_X - 1, "|   %c   |",
-	   suit_to_symbol(card));
-  mvprintw(PHAND1_Y + 4, PHAND1_X - 1, "|       |");
-  mvprintw(PHAND1_Y + 5, PHAND1_X - 1, "|______%c|",
-	   rank_to_symbol(card));
+void render_top_card(Card card, int x, int y) {
+  mvprintw(y, x,          "_______");
+  mvprintw(y + 1, x - 1, "|%c      |", rank_to_symbol(card));
+  mvprintw(y + 2, x - 1, "|       |");
+  mvprintw(y + 3, x - 1, "|   %c   |", suit_to_symbol(card));
+  mvprintw(y + 4, x - 1, "|       |");
+  mvprintw(y + 5, x - 1, "|______%c|", rank_to_symbol(card));
 }
 
 void render_init() {

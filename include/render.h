@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-void render_phand1(Card card);
+void render_top_card(Card card, int x, int y);
 void render_init();
 void render_destroy();
 

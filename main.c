@@ -44,7 +44,7 @@ int main(void) {
   render_init();
 
   while((ch = getch() != 'q')) {
-    render_phand1(card);
+    render_top_card(card, 5, 20);
     refresh();
   }
 
