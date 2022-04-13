@@ -28,12 +28,12 @@ int main(void) {
 	if(hit_hand(&player_hand, &deck) == BUSTED) {
 	  printf("that is a bust\n");
 	  printf("now you fucked up\n");
-	  goto exit_now;
+	  goto clean_exit;
 	}
 	break;
       default:
 	printf("you have fucked up now\n");
-	goto exit_now;
+	goto clean_exit;
     }
 
     render_hand(player_hand);
@@ -41,7 +41,7 @@ int main(void) {
     refresh();
   }
 
-exit_now:
+clean_exit:
   render_destroy();
   return 0;
 }
