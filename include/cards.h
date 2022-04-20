@@ -1,7 +1,7 @@
 #ifndef CARDS_H_
 #define CARDS_H_
 
-#include "../include/cards.h"
+#include <stdint.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -45,5 +45,6 @@ void swap(Card *a, Card *b);
 void shuffle_deck(Deck *deck);
 void print_deck(Deck deck);
 void print_card(Card card);
+uint8_t rank_to_score(Card card);
 
 #endif // CARDS_H_

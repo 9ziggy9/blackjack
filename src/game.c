@@ -42,12 +42,13 @@ Hand new_hand(Player player) {
   return hand;
 }
 
-HandState eval_hand(const Hand *hand) {
+HandState eval_hand(Hand *hand) {
   assert(0 && "\nnot yet implemented");
   const uint8_t length = hand->num_cards;
-  for (int i = 0; i < length; i++) {
-    
-  }
+  uint8_t easy_score, hard_score = 0;
+  // first compute the hand score with hard aces
+  for (int i = 0; i < length; i++)
+    hard_score += rank_to_score(hand->cards[i]);
   return BUSTED;
 }
 
