@@ -24,6 +24,7 @@ static void append_to_hand(Hand *hand, Card card) {
   while (location < 12) {
     if (!hand->cards[location].is_dealt) {
       hand->cards[location] = card;
+      hand->num_cards++;
       break;
     }
     location++;
@@ -33,11 +34,21 @@ static void append_to_hand(Hand *hand, Card card) {
 Hand new_hand(Player player) {
   Hand hand;
   hand.score = 0;
+  hand.num_cards = 0;
   hand.player = player;
   for (int i = 0; i < 12; i++) {
     hand.cards[i] = NULL_CARD;
   }
   return hand;
+}
+
+HandState eval_hand(const Hand *hand) {
+  assert(0 && "\nnot yet implemented");
+  const uint8_t length = hand->num_cards;
+  for (int i = 0; i < length; i++) {
+    
+  }
+  return BUSTED;
 }
 
 HandState hit_hand(Hand *hand, Deck *deck) {
@@ -53,9 +64,7 @@ HandState hit_hand(Hand *hand, Deck *deck) {
   // to move to endwin() stage via goto statement
   if (hand->score > 21) return BUSTED;
 
-  hand->score += hit_card.rank;
-  hand->num_cards++;
-
+  eval_hand(hand);
   return IN_ACTION;
 }
 
