@@ -26,9 +26,10 @@ int main(void) {
 	quit = true;
 	break;
       case 'h':
-	if(hit_hand(&player_hand, &deck) == BUSTED) {
-	  goto clean_exit;
-	}
+	hit_hand(&player_hand, &deck);
+	/* if(hit_hand(&player_hand, &deck) == BUSTED) { */
+	/*   goto clean_exit; */
+	/* } */
 	break;
       default:
 	goto clean_exit;
