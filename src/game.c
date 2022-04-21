@@ -43,13 +43,17 @@ Hand new_hand(Player player) {
 }
 
 HandState eval_hand(Hand *hand) {
-  assert(0 && "\nnot yet implemented");
   const uint8_t length = hand->num_cards;
-  uint8_t score, hard_score = 0;
-
-  // routine to computer hard hand
-  for (int pos = 0; pos < length; pos++) {}
-
+  bool has_ace = false;
+  for (int pos = 0; pos < length; pos++) {
+    hand->score += rank_to_score(hand->cards[pos]);
+    if (hand->cards[pos].rank == ACE) has_ace = true;
+  }
+  if (has_ace && hand->score < 12) {
+    hand->score += 10;
+    return IN_ACTION;
+  }
+  if (hand->score < 22) return IN_ACTION;
   return BUSTED;
 }
 
