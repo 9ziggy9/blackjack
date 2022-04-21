@@ -25,5 +25,6 @@ typedef struct {
 Hand new_hand(Player player);
 HandState hit_hand(Hand *hand, Deck *deck);
 void print_hand(Hand hand);
+HandState eval_hand(Hand *hand, uint8_t pos);
 
 #endif //GAME_H_ 

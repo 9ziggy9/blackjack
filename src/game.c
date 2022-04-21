@@ -42,24 +42,26 @@ Hand new_hand(Player player) {
   return hand;
 }
 
-HandState eval_hand(Hand *hand) {
-  uint8_t location = 0;
-  uint8_t new_score = 0;
+/*
+  research the difference in signature variations, i.e.,
+  eval_hand(Hand *hand, uint8 position, uint8 score);
+*/
+HandState eval_hand(Hand *hand, uint8_t pos) {
   bool has_ace = false;
-  while (hand->cards[location].is_dealt) {
-    new_score += rank_to_score(hand->cards[location]);
-    if (hand->cards[location++].rank == ACE) has_ace = true;
+  while (hand->cards[pos].is_dealt) {
+    hand->score += rank_to_score(hand->cards[pos]);
+    if (hand->cards[pos++].rank == ACE) has_ace = true;
   }
-  if (has_ace && hand->score < 12) new_score += 10;
-  hand->score = new_score;
+  if (has_ace && hand->score < 12) hand->score += 10;
   if (hand->score > 21) return BUSTED;
   return IN_ACTION;
 }
 
 HandState hit_hand(Hand *hand, Deck *deck) {
+  uint8_t position = hand->num_cards; // mark location in hand where hit
   Card hit_card = deal_top_card(deck);
   append_to_hand(hand, hit_card);
-  return eval_hand(hand);
+  return eval_hand(hand, position);
 }
 
 void print_hand(Hand hand) {
