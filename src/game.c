@@ -48,8 +48,7 @@ HandState eval_hand(Hand *hand) {
   bool has_ace = false;
   while (hand->cards[location].is_dealt) {
     new_score += rank_to_score(hand->cards[location]);
-    if (hand->cards[location].rank == ACE) has_ace = true;
-    location++;
+    if (hand->cards[location++].rank == ACE) has_ace = true;
   }
   if (has_ace && hand->score < 12) new_score += 10;
   hand->score = new_score;
