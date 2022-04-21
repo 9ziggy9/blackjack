@@ -43,35 +43,21 @@ Hand new_hand(Player player) {
 }
 
 HandState eval_hand(Hand *hand) {
-  const uint8_t length = hand->num_cards;
+  uint8_t start = hand->num_cards;
   bool has_ace = false;
-  for (int pos = 0; pos < length; pos++) {
-    hand->score += rank_to_score(hand->cards[pos]);
-    if (hand->cards[pos].rank == ACE) has_ace = true;
+  while (!hand->cards[start].is_dealt) {
+    hand->score += rank_to_score(hand->cards[start]);
+    if (hand->cards[start++].rank == ACE) has_ace = true;
   }
-  if (has_ace && hand->score < 12) {
-    hand->score += 10;
-    return IN_ACTION;
-  }
-  if (hand->score < 22) return IN_ACTION;
-  return BUSTED;
+  if (has_ace && hand->score < 12) hand->score += 10;
+  if (hand->score > 21) return BUSTED;
+  return IN_ACTION;
 }
 
 HandState hit_hand(Hand *hand, Deck *deck) {
-  // assertion to guard hit_hand() exposure for busted hands
-  assert(hand->score < 22 && "\nHow did you get here? You busted.");
-
-  int location = 0;
-
   Card hit_card = deal_top_card(deck);
   append_to_hand(hand, hit_card);
-
-  // this return code will indicate to event loop that it needs
-  // to move to endwin() stage via goto statement
-  if (hand->score > 21) return BUSTED;
-
-  eval_hand(hand);
-  return IN_ACTION;
+  return eval_hand(hand);
 }
 
 void print_hand(Hand hand) {

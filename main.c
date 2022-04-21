@@ -20,19 +20,17 @@ int main(void) {
 
   bool quit = false;
   while(!quit) {
+    printw("(%d, %d)\n", player_hand.score, player_hand.num_cards);
     switch((ch = getch())) {
       case 'q':
 	quit = true;
 	break;
       case 'h':
 	if(hit_hand(&player_hand, &deck) == BUSTED) {
-	  printf("that is a bust\n");
-	  printf("now you fucked up\n");
 	  goto clean_exit;
 	}
 	break;
       default:
-	printf("you have fucked up now\n");
 	goto clean_exit;
     }
 
@@ -43,5 +41,6 @@ int main(void) {
 
 clean_exit:
   render_destroy();
+  printf("(%d,%d)\n", player_hand.score, player_hand.num_cards);
   return 0;
 }
