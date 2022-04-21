@@ -45,6 +45,7 @@ Hand new_hand(Player player) {
 /*
   research the difference in signature variations, i.e.,
   eval_hand(Hand *hand, uint8 position, uint8 score);
+  also consider special exit in the case of BLACKJACK
 */
 HandState eval_hand(Hand *hand, uint8_t pos) {
   bool has_ace = false;
