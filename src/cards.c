@@ -35,6 +35,8 @@ char rank_to_symbol(Card card) {
 
 uint8_t rank_to_score(Card card) {
   switch (card.rank) {
+  case ACE:
+    return 1;
   case TWO:
     return 2;
   case THREE:
@@ -56,8 +58,6 @@ uint8_t rank_to_score(Card card) {
   case QUEEN:
   case KING:
     return 10;
-  case ACE:
-    return 11;
   default:
     return -1;
   }
@@ -82,7 +82,7 @@ Deck assemble_deck() {
   Deck deck;
   int place = 0;
   for (Suit suit = HEARTS; suit <= SPADES; suit++) {
-    for (Rank rank = TWO; rank <= ACE; rank++) {
+    for (Rank rank = ACE; rank < NULL_CARD_R; rank++) {
       Card new_card = {rank, suit, false};
       deck.cards[place++] = new_card;
     }

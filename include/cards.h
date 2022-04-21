@@ -8,20 +8,10 @@
 #include <time.h>
 
 typedef enum {
-  TWO = 2,
-  THREE,
-  FOUR,
-  FIVE,
-  SIX,
-  SEVEN,
-  EIGHT,
-  NINE,
-  TEN,
-  JACK,
-  QUEEN,
-  KING,
-  ACE,
-  NULL_CARD_R
+  ACE = 1, TWO, THREE,
+  FOUR, FIVE, SIX, SEVEN,
+  EIGHT, NINE, TEN, JACK,
+  QUEEN, KING, NULL_CARD_R
 } Rank;
 
 typedef enum { HEARTS, CLUBS, DIAMONDS, SPADES, NULL_CARD_S } Suit;

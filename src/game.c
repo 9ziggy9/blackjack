@@ -45,10 +45,11 @@ Hand new_hand(Player player) {
 HandState eval_hand(Hand *hand) {
   assert(0 && "\nnot yet implemented");
   const uint8_t length = hand->num_cards;
-  uint8_t easy_score, hard_score = 0;
-  // first compute the hand score with hard aces
-  for (int i = 0; i < length; i++)
-    hard_score += rank_to_score(hand->cards[i]);
+  uint8_t score, hard_score = 0;
+
+  // routine to computer hard hand
+  for (int pos = 0; pos < length; pos++) {}
+
   return BUSTED;
 }
 
