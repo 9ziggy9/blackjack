@@ -36,23 +36,15 @@ char rank_to_symbol(Card card) {
 uint8_t rank_to_score(Card card) {
   switch (card.rank) {
   case ACE:
-    return 1;
   case TWO:
-    return 2;
   case THREE:
-    return 3;
   case FOUR:
-    return 4;
   case FIVE:
-    return 5;
   case SIX:
-    return 6;
   case SEVEN:
-    return 7;
   case EIGHT:
-    return 8;
   case NINE:
-    return 9;
+    return card.rank;
   case TEN:
   case JACK:
   case QUEEN:

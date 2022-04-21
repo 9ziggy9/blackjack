@@ -43,13 +43,16 @@ Hand new_hand(Player player) {
 }
 
 HandState eval_hand(Hand *hand) {
-  uint8_t start = hand->num_cards;
+  uint8_t location = 0;
+  uint8_t new_score = 0;
   bool has_ace = false;
-  while (!hand->cards[start].is_dealt) {
-    hand->score += rank_to_score(hand->cards[start]);
-    if (hand->cards[start++].rank == ACE) has_ace = true;
+  while (hand->cards[location].is_dealt) {
+    new_score += rank_to_score(hand->cards[location]);
+    if (hand->cards[location].rank == ACE) has_ace = true;
+    location++;
   }
-  if (has_ace && hand->score < 12) hand->score += 10;
+  if (has_ace && hand->score < 12) new_score += 10;
+  hand->score = new_score;
   if (hand->score > 21) return BUSTED;
   return IN_ACTION;
 }

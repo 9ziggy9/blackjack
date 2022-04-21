@@ -43,5 +43,6 @@ int main(void) {
 clean_exit:
   render_destroy();
   printf("(%d,%d)\n", player_hand.score, player_hand.num_cards);
+  print_hand(player_hand);
   return 0;
 }
