@@ -34,12 +34,12 @@ static void render_top_card(const Card card, int x, int y) {
 }
 
 static void render_bottom_card(const Card card, int x, int y) {
-  mvprintw(y, x,          "__");
-  mvprintw(y + 1, x - 1, "|%c", rank_to_symbol(card));
-  mvprintw(y + 2, x - 1, "|  ");
-  mvprintw(y + 3, x - 1, "|  ");
-  mvprintw(y + 4, x - 1, "|  ");
-  mvprintw(y + 5, x - 1, "|______%c|", rank_to_symbol(card));
+  mvprintw(y, calc_center(CARD_SIZE) + x,          "__");
+  mvprintw(y + 1, calc_center(CARD_SIZE) + x - 1, "|%c", rank_to_symbol(card));
+  mvprintw(y + 2, calc_center(CARD_SIZE) + x - 1, "|  ");
+  mvprintw(y + 3, calc_center(CARD_SIZE) + x - 1, "|  ");
+  mvprintw(y + 4, calc_center(CARD_SIZE) + x - 1, "|  ");
+  mvprintw(y + 5, calc_center(CARD_SIZE) + x - 1, "|______%c|", rank_to_symbol(card));
 }
 
 void render_hand(const Hand hand) {
