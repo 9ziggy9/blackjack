@@ -20,16 +20,14 @@ int main(void) {
 
   bool quit = false;
   while(!quit) {
-    printw("(%d, %d)\n", player_hand.score, player_hand.num_cards);
     switch((ch = getch())) {
       case 'q':
 	quit = true;
 	break;
       case 'h':
-	hit_hand(&player_hand, &deck);
-	/* if(hit_hand(&player_hand, &deck) == BUSTED) { */
-	/*   goto clean_exit; */
-	/* } */
+	if(hit_hand(&player_hand, &deck) == BUSTED) {
+	  goto clean_exit;
+	}
 	break;
       default:
 	goto clean_exit;

@@ -4,13 +4,19 @@ static const int PHAND1_X = 5;
 static const int PHAND1_Y = 20;
 static const int DHAND_X = 5;
 static const int DHAND_Y = 5;
+static int ROW, COL;
+const static int CARD_SIZE = 7;
+
+static int calc_center(int length) {
+  return (COL - length) / 2;
+}
 
 void render_init() {
   initscr();
   cbreak();
+  getmaxyx(stdscr, ROW, COL);
   keypad(stdscr, TRUE);
   curs_set(0);
-  printw("Hello, world");
   refresh();
 }
 
@@ -19,12 +25,12 @@ void render_destroy() {
 }
 
 static void render_top_card(const Card card, int x, int y) {
-  mvprintw(y, x,          "_______");
-  mvprintw(y + 1, x - 1, "|%c      |", rank_to_symbol(card));
-  mvprintw(y + 2, x - 1, "|       |");
-  mvprintw(y + 3, x - 1, "|   %c   |", suit_to_symbol(card));
-  mvprintw(y + 4, x - 1, "|       |");
-  mvprintw(y + 5, x - 1, "|______%c|", rank_to_symbol(card));
+  mvprintw(y, calc_center(CARD_SIZE) + x - 1,        "_______");
+  mvprintw(y + 1, calc_center(CARD_SIZE) + x - 1,  "|%c      |", rank_to_symbol(card));
+  mvprintw(y + 2, calc_center(CARD_SIZE) + x - 1,  "|       |");
+  mvprintw(y + 3, calc_center(CARD_SIZE) + x - 1, "|   %c   |", suit_to_symbol(card));
+  mvprintw(y + 4, calc_center(CARD_SIZE) + x - 1, "|       |");
+  mvprintw(y + 5, calc_center(CARD_SIZE) + x - 1, "|______%c|", rank_to_symbol(card));
 }
 
 static void render_bottom_card(const Card card, int x, int y) {
