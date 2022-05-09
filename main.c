@@ -42,8 +42,8 @@ int main(void) {
   // initialization time rendering, will not update
   render_usage();
 
-  bool quit = false;
-  while(!quit) {
+  bool game_has_ended = false;
+  while(!game_has_ended) {
     // runtime rendering, will update
     render_hand(player_hand);
     render_hand(dealer_hand);
@@ -51,8 +51,7 @@ int main(void) {
     // end runtime rendering
     switch((ch = getch())) {
       case 'q':
-	quit = true;
-	break;
+	goto clean_exit;
       case 'h':
 	if (hit_hand(&player_hand, &deck) == BUSTED) {
 	  goto clean_exit;
@@ -63,10 +62,10 @@ int main(void) {
 	  msleep(500);
 	  render_hand(dealer_hand);
 	  refresh();
-	  if (dealer_action(dealer_hand) == HIT) continue;
-	  else break;
+	  if (dealer_action(dealer_hand) == STAND) break;
 	}
 	msleep(500);
+	game_has_ended = true;
 	break;
       default:
 	goto clean_exit;
@@ -76,7 +75,17 @@ int main(void) {
 
 clean_exit:
   render_destroy();
-  printf("(%d,%d)\n", player_hand.score, player_hand.num_cards);
-  print_hand(player_hand);
+  switch(game_outcome(player_hand,dealer_hand)) {
+  case LOSS:
+    printf("You lose!\n");
+    break;
+  case WIN:
+    printf("You win!\n");
+    break;
+  default:
+    printf("You push!\n");
+    break;
+  }
+  printf("Thank you for playing!\n");
   return 0;
 }

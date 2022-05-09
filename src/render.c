@@ -70,10 +70,6 @@ void render_hand(const Hand hand) {
 					hand_origin_y - location);
 }
 
-void render_player_score(const Hand hand) {
-  assert(0 && "not yet implemented!\n");
-}
-
 void render_usage() {
   mvprintw(0, 0, "h to hit");
   mvprintw(1, 0, "s to stand");
@@ -81,6 +77,14 @@ void render_usage() {
 }
 
 void render_scores(const Hand player_hand, const Hand dealer_hand) {
-  mvprintw(ROW - 2, 0, "dealer: 21");
-  mvprintw(ROW - 1, 0, "player: 16");
+  mvprintw(ROW - 2, 0, "dealer: %d", dealer_hand.score);
+  mvprintw(ROW - 1, 0, "player: %d", player_hand.score);
+}
+
+Outcome game_outcome(const Hand player_hand, const Hand dealer_hand) {
+  if (player_hand.score > 21) return LOSS;
+  if (dealer_hand.score > 21) return WIN;
+  if (player_hand.score == dealer_hand.score) return PUSH;
+  if (dealer_hand.score > player_hand.score) return LOSS;
+  else return WIN;
 }

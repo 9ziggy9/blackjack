@@ -20,6 +20,12 @@ typedef enum {
   STAND
 } Decision;
 
+typedef enum {
+  WIN,
+  LOSS,
+  PUSH
+} Outcome;
+
 typedef struct {
   uint8_t score;
   uint8_t num_cards;
@@ -32,5 +38,6 @@ HandState hit_hand(Hand *hand, Deck *deck);
 void print_hand(Hand hand);
 HandState eval_hand(Hand *hand, uint8_t pos);
 Decision dealer_action(const Hand hand);
+Outcome game_outcome(const Hand player_hand, const Hand dealer_hand);
 
 #endif //GAME_H_ 
