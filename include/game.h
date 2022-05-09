@@ -15,6 +15,11 @@ typedef enum {
   BLACKJACK
 } HandState;
 
+typedef enum {
+  HIT,
+  STAND
+} Decision;
+
 typedef struct {
   uint8_t score;
   uint8_t num_cards;
@@ -26,5 +31,6 @@ Hand new_hand(Player player);
 HandState hit_hand(Hand *hand, Deck *deck);
 void print_hand(Hand hand);
 HandState eval_hand(Hand *hand, uint8_t pos);
+Decision dealer_action(const Hand hand);
 
 #endif //GAME_H_ 

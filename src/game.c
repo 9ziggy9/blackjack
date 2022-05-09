@@ -75,3 +75,8 @@ void print_hand(Hand hand) {
   }
   printf("\n");
 }
+
+Decision dealer_action(const Hand hand) {
+  if (hand.score >= 17) return STAND;
+  else return HIT;
+}

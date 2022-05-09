@@ -63,6 +63,8 @@ int main(void) {
 	  msleep(500);
 	  render_hand(dealer_hand);
 	  refresh();
+	  if (dealer_action(dealer_hand) == HIT) continue;
+	  else break;
 	}
 	msleep(500);
 	break;
