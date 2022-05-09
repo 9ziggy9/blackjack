@@ -25,21 +25,21 @@ void render_destroy() {
 }
 
 static void render_top_card(const Card card, int x, int y) {
-  mvprintw(y,     calc_center(CARD_SIZE) + x - 1,  "_______");
-  mvprintw(y + 1, calc_center(CARD_SIZE) + x - 1, "|%c      |", rank_to_symbol(card));
-  mvprintw(y + 2, calc_center(CARD_SIZE) + x - 1, "|       |");
-  mvprintw(y + 3, calc_center(CARD_SIZE) + x - 1, "|   %c   |", suit_to_symbol(card));
-  mvprintw(y + 4, calc_center(CARD_SIZE) + x - 1, "|       |");
-  mvprintw(y + 5, calc_center(CARD_SIZE) + x - 1, "|______%c|", rank_to_symbol(card));
+  mvprintw(y,     calc_center(CARD_SIZE) + x - 8,  "_______");
+  mvprintw(y + 1, calc_center(CARD_SIZE) + x - 8, "|%c      |", rank_to_symbol(card));
+  mvprintw(y + 2, calc_center(CARD_SIZE) + x - 8, "|       |");
+  mvprintw(y + 3, calc_center(CARD_SIZE) + x - 8, "|   %c   |", suit_to_symbol(card));
+  mvprintw(y + 4, calc_center(CARD_SIZE) + x - 8, "|       |");
+  mvprintw(y + 5, calc_center(CARD_SIZE) + x - 8, "|______%c|", rank_to_symbol(card));
 }
 
 static void render_bottom_card(const Card card, int x, int y) {
-  mvprintw(y,     calc_center(CARD_SIZE) + x,      "__");
-  mvprintw(y + 1, calc_center(CARD_SIZE) + x - 1, "|%c", rank_to_symbol(card));
-  mvprintw(y + 2, calc_center(CARD_SIZE) + x - 1, "|  ");
-  mvprintw(y + 3, calc_center(CARD_SIZE) + x - 1, "|  ");
-  mvprintw(y + 4, calc_center(CARD_SIZE) + x - 1, "|  ");
-  mvprintw(y + 5, calc_center(CARD_SIZE) + x - 1, "|______%c|", rank_to_symbol(card));
+  mvprintw(y,     calc_center(CARD_SIZE) + x - 7,  "__");
+  mvprintw(y + 1, calc_center(CARD_SIZE) + x - 8, "|%c", rank_to_symbol(card));
+  mvprintw(y + 2, calc_center(CARD_SIZE) + x - 8, "|  ");
+  mvprintw(y + 3, calc_center(CARD_SIZE) + x - 8, "|  ");
+  mvprintw(y + 4, calc_center(CARD_SIZE) + x - 8, "|  ");
+  mvprintw(y + 5, calc_center(CARD_SIZE) + x - 8, "|______%c|", rank_to_symbol(card));
 }
 
 void render_hand(const Hand hand) {
