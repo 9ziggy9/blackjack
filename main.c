@@ -43,11 +43,13 @@ int main(void) {
   render_usage();
 
   bool game_has_ended = false;
+  bool outcome_ready = false;
   while(!game_has_ended) {
     // runtime rendering, will update
     render_hand(player_hand);
     render_hand(dealer_hand);
     render_scores(player_hand, dealer_hand);
+    render_outcome(player_hand, dealer_hand, !outcome_ready);
     // end runtime rendering
     switch((ch = getch())) {
       case 'q':
@@ -65,7 +67,7 @@ int main(void) {
 	  if (dealer_action(dealer_hand) == STAND) break;
 	}
 	msleep(500);
-	game_has_ended = true;
+	outcome_ready = true;
 	break;
       default:
 	goto clean_exit;
@@ -75,17 +77,6 @@ int main(void) {
 
 clean_exit:
   render_destroy();
-  switch(game_outcome(player_hand,dealer_hand)) {
-  case LOSS:
-    printf("You lose!\n");
-    break;
-  case WIN:
-    printf("You win!\n");
-    break;
-  default:
-    printf("You push!\n");
-    break;
-  }
   printf("Thank you for playing!\n");
   return 0;
 }
