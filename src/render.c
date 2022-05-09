@@ -14,6 +14,7 @@ static int calc_center(int length) {
 void render_init() {
   initscr();
   cbreak();
+  noecho(); // silence keyboard input echoing
   getmaxyx(stdscr, ROW, COL);
   keypad(stdscr, TRUE);
   curs_set(0);

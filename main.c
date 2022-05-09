@@ -3,6 +3,24 @@
 #include "./include/render.h"
 #include <stdio.h>
 #include <time.h>
+#include <errno.h>
+
+int nanosleep(const struct timespec *__requested_time, struct timespec *__remaining);
+
+int msleep(long msec) {
+  struct timespec ts;
+  int res;
+  if (msec < 0) {
+    errno = EINVAL;
+    return -1;
+  }
+  ts.tv_sec = msec / 1000;
+  ts.tv_nsec = (msec % 1000) * 1000000;
+  do {
+    res = nanosleep(&ts, &ts);
+  } while (res && errno == EINTR);
+  return res;
+}
 
 int main(void) {
   // seed random number generator
@@ -41,8 +59,11 @@ int main(void) {
 	break;
       case 's':
 	while (hit_hand(&dealer_hand, &deck) != BUSTED) {
+	  msleep(500);
 	  render_hand(dealer_hand);
+	  refresh();
 	}
+	msleep(500);
 	break;
       default:
 	goto clean_exit;
