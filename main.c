@@ -12,13 +12,16 @@ int main(void) {
   Deck deck = assemble_deck();
   shuffle_deck(&deck);
 
+  // initialize hands
   Hand player_hand = new_hand(PLAYER);
   Hand dealer_hand = new_hand(DEALER);
+  hit_hand(&player_hand, &deck);
+  hit_hand(&dealer_hand, &deck);
 
   // initialize curses system
   render_init();
 
-  // init rendering, will not update
+  // initialization time rendering, will not update
   render_usage();
 
   bool quit = false;
@@ -32,8 +35,13 @@ int main(void) {
 	quit = true;
 	break;
       case 'h':
-	if(hit_hand(&player_hand, &deck) == BUSTED) {
+	if (hit_hand(&player_hand, &deck) == BUSTED) {
 	  goto clean_exit;
+	}
+	break;
+      case 's':
+	while (hit_hand(&dealer_hand, &deck) != BUSTED) {
+	  render_hand(dealer_hand);
 	}
 	break;
       default:
