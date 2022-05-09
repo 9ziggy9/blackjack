@@ -10,8 +10,9 @@
 #include <time.h>
 #include <assert.h>
 
-void render_hand(const Hand hand);
 void render_init();
 void render_destroy();
+void render_hand(const Hand hand);
+void render_usage();
 
 #endif // RENDER_H_

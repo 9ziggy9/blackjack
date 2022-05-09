@@ -18,8 +18,15 @@ int main(void) {
   // initialize curses system
   render_init();
 
+  // init rendering, will not update
+  render_usage();
+
   bool quit = false;
   while(!quit) {
+    // runtime rendering, will update
+    render_hand(player_hand);
+    render_hand(dealer_hand);
+    // end runtime rendering
     switch((ch = getch())) {
       case 'q':
 	quit = true;
@@ -32,9 +39,6 @@ int main(void) {
       default:
 	goto clean_exit;
     }
-
-    render_hand(player_hand);
-    render_hand(dealer_hand);
     refresh();
   }
 
