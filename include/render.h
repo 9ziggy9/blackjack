@@ -14,5 +14,6 @@ void render_init();
 void render_destroy();
 void render_hand(const Hand hand);
 void render_usage();
+void render_scores(const Hand player_hand, const Hand dealer_hand);
 
 #endif // RENDER_H_

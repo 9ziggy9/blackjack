@@ -47,6 +47,7 @@ int main(void) {
     // runtime rendering, will update
     render_hand(player_hand);
     render_hand(dealer_hand);
+    render_scores(player_hand, dealer_hand);
     // end runtime rendering
     switch((ch = getch())) {
       case 'q':
