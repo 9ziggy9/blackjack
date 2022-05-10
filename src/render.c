@@ -89,24 +89,18 @@ void render_scores(const Hand player_hand, const Hand dealer_hand) {
   mvprintw(ROW - 1, 0, "player: %d", player_hand.score);
 }
 
-void render_outcome(const Hand player_hand,
-		    const Hand dealer_hand,
-		    const bool in_action)
-{
-  if (in_action) mvprintw(ROW/2, COL/2 - 8, "IN ACTION ...");
-  else {
-    move(ROW/2,0); // target line
-    clrtoeol(); // clear line
-    switch (game_outcome(player_hand, dealer_hand)) {
-      case LOSS:
-	mvprintw(ROW/2, COL/2 - 8, "YOU LOSE!");
-	break;
-      case WIN:
-	mvprintw(ROW/2, COL/2 - 8, "YOU WIN!");
-	break;
-      case PUSH:
-	mvprintw(ROW/2, COL/2 - 8, "YOU PUSH!");
-	break;
-    };
-  }
+void render_outcome(const Hand player_hand, const Hand dealer_hand) {
+  move(ROW/2,0); // target line
+  clrtoeol(); // clear line
+  switch (game_outcome(player_hand, dealer_hand)) {
+    case LOSS:
+      mvprintw(ROW/2, COL/2 - 8, "YOU LOSE!");
+      break;
+    case WIN:
+      mvprintw(ROW/2, COL/2 - 8, "YOU WIN!");
+      break;
+    case PUSH:
+      mvprintw(ROW/2, COL/2 - 8, "YOU PUSH!");
+      break;
+  };
 }

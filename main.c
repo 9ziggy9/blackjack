@@ -42,22 +42,19 @@ int main(void) {
   // initialization time rendering, will not update
   render_usage();
 
-  bool game_has_ended = false;
-  bool outcome_ready = false;
+bool game_has_ended = false;
+game_loop:
   while(!game_has_ended) {
     // runtime rendering, will update
     render_hand(player_hand);
     render_hand(dealer_hand);
     render_scores(player_hand, dealer_hand);
-    render_outcome(player_hand, dealer_hand, !outcome_ready);
     // end runtime rendering
     switch((ch = getch())) {
       case 'q':
 	goto clean_exit;
       case 'h':
-	if (hit_hand(&player_hand, &deck) == BUSTED) {
-	  goto clean_exit;
-	}
+	if (hit_hand(&player_hand, &deck) == BUSTED) game_has_ended = true;
 	break;
       case 's':
 	while (hit_hand(&dealer_hand, &deck) != BUSTED) {
@@ -67,10 +64,30 @@ int main(void) {
 	  if (dealer_action(dealer_hand) == STAND) break;
 	}
 	msleep(500);
-	outcome_ready = true;
+	game_has_ended = true;
 	break;
       default:
 	goto clean_exit;
+    }
+    refresh();
+  }
+
+  // runtime rendering, will update
+  render_hand(player_hand);
+  render_hand(dealer_hand);
+  render_scores(player_hand, dealer_hand);
+  refresh();
+
+  bool outcome_menu = true;
+  while(outcome_menu) {
+    render_outcome(player_hand, dealer_hand);
+    switch((ch = getch())) {
+      case 'q':
+	outcome_menu = false;
+	break;
+      case 'p':
+	game_has_ended = false;
+	goto game_loop;
     }
     refresh();
   }

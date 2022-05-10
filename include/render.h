@@ -15,8 +15,6 @@ void render_destroy();
 void render_hand(const Hand hand);
 void render_usage();
 void render_scores(const Hand player_hand, const Hand dealer_hand);
-void render_outcome(const Hand player_hand,
-		   const Hand dealer_hand,
-		   const bool in_action);
+void render_outcome(const Hand player_hand, const Hand dealer_hand);
 
 #endif // RENDER_H_
