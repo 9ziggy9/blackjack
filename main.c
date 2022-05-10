@@ -2,25 +2,6 @@
 #include "./include/game.h"
 #include "./include/render.h"
 #include <stdio.h>
-#include <time.h>
-#include <errno.h>
-
-int nanosleep(const struct timespec *__requested_time, struct timespec *__remaining);
-
-int msleep(long msec) {
-  struct timespec ts;
-  int res;
-  if (msec < 0) {
-    errno = EINVAL;
-    return -1;
-  }
-  ts.tv_sec = msec / 1000;
-  ts.tv_nsec = (msec % 1000) * 1000000;
-  do {
-    res = nanosleep(&ts, &ts);
-  } while (res && errno == EINTR);
-  return res;
-}
 
 int main(void) {
   // seed random number generator
@@ -42,8 +23,7 @@ int main(void) {
   // initialization time rendering, will not update
   render_usage();
 
-bool game_has_ended = false;
-game_loop:
+  bool game_has_ended = false;
   while(!game_has_ended) {
     // runtime rendering, will update
     render_hand(player_hand);
@@ -86,8 +66,7 @@ game_loop:
 	outcome_menu = false;
 	break;
       case 'p':
-	game_has_ended = false;
-	goto game_loop;
+	break;
     }
     refresh();
   }

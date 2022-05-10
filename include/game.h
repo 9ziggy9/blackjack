@@ -3,6 +3,8 @@
 #include "./cards.h"
 #include <assert.h>
 #include <stdint.h>
+#include <time.h>
+#include <errno.h>
 
 typedef enum {
   PLAYER,
@@ -38,5 +40,8 @@ HandState hit_hand(Hand *hand, Deck *deck);
 void print_hand(Hand hand);
 HandState eval_hand(Hand *hand, uint8_t pos);
 Decision dealer_action(const Hand hand);
+int nanosleep(const struct timespec *__requested_time,
+	      struct timespec *__remaining);
+int msleep(long msec);
 
 #endif //GAME_H_ 
