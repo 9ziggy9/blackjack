@@ -1,6 +1,7 @@
 #include "./include/cards.h"
 #include "./include/game.h"
 #include "./include/render.h"
+#include "./include/runtime.h"
 #include <stdio.h>
 
 int main(void) {
@@ -23,8 +24,8 @@ int main(void) {
   // initialization time rendering, will not update
   render_usage();
 
-  bool game_has_ended = false;
-  while(!game_has_ended) {
+  RunTime runtime = START;
+  while(runtime != QUIT) {
     // runtime rendering, will update
     render_hand(player_hand);
     render_hand(dealer_hand);
@@ -34,7 +35,7 @@ int main(void) {
       case 'q':
 	goto clean_exit;
       case 'h':
-	if (hit_hand(&player_hand, &deck) == BUSTED) game_has_ended = true;
+	if (hit_hand(&player_hand, &deck) == BUSTED) runtime = QUIT;
 	break;
       case 's':
 	while (hit_hand(&dealer_hand, &deck) != BUSTED) {
@@ -44,7 +45,7 @@ int main(void) {
 	  if (dealer_action(dealer_hand) == STAND) break;
 	}
 	msleep(500);
-	game_has_ended = true;
+	runtime = QUIT;
 	break;
       default:
 	goto clean_exit;
@@ -74,5 +75,6 @@ int main(void) {
 clean_exit:
   render_destroy();
   printf("Thank you for playing!\n");
+  hello_runtime();
   return 0;
 }
