@@ -26,6 +26,7 @@ int main(void) {
   RunTime runtime = GAME;
   while (runtime != QUIT) {
     if (runtime == GAME) runtime = game(&deck, &player_hand, &dealer_hand);
+    if (runtime == GAMEOVER) runtime = game_over(&deck, &player_hand, &dealer_hand);
     refresh();
   }
 
