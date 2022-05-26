@@ -26,30 +26,7 @@ int main(void) {
 
   RunTime runtime = START;
   while(runtime != QUIT) {
-    // runtime rendering, will update
-    render_hand(player_hand);
-    render_hand(dealer_hand);
-    render_scores(player_hand, dealer_hand);
-    // end runtime rendering
-    switch((ch = getch())) {
-      case 'q':
-	goto clean_exit;
-      case 'h':
-	if (hit_hand(&player_hand, &deck) == BUSTED) runtime = QUIT;
-	break;
-      case 's':
-	while (hit_hand(&dealer_hand, &deck) != BUSTED) {
-	  msleep(500);
-	  render_hand(dealer_hand);
-	  refresh();
-	  if (dealer_action(dealer_hand) == STAND) break;
-	}
-	msleep(500);
-	runtime = QUIT;
-	break;
-      default:
-	goto clean_exit;
-    }
+    runtime = game(&deck, &player_hand, &dealer_hand);
     refresh();
   }
 
@@ -59,18 +36,18 @@ int main(void) {
   render_scores(player_hand, dealer_hand);
   refresh();
 
-  bool outcome_menu = true;
-  while(outcome_menu) {
-    render_outcome(player_hand, dealer_hand);
-    switch((ch = getch())) {
-      case 'q':
-	outcome_menu = false;
-	break;
-      case 'p':
-	break;
-    }
-    refresh();
-  }
+  /* bool outcome_menu = true; */
+  /* while(outcome_menu) { */
+  /*   render_outcome(player_hand, dealer_hand); */
+  /*   switch((ch = getch())) { */
+  /*     case 'q': */
+  /* 	outcome_menu = false; */
+  /* 	break; */
+  /*     case 'p': */
+  /* 	break; */
+  /*   } */
+  /*   refresh(); */
+  /* } */
 
 clean_exit:
   render_destroy();
