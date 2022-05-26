@@ -7,7 +7,6 @@
 int main(void) {
   // seed random number generator
   srand(time(NULL));
-  char ch;
 
   Deck deck = assemble_deck();
   shuffle_deck(&deck);
@@ -24,9 +23,9 @@ int main(void) {
   // initialization time rendering, will not update
   render_usage();
 
-  RunTime runtime = START;
-  while(runtime != QUIT) {
-    runtime = game(&deck, &player_hand, &dealer_hand);
+  RunTime runtime = GAME;
+  while (runtime != QUIT) {
+    if (runtime == GAME) runtime = game(&deck, &player_hand, &dealer_hand);
     refresh();
   }
 
@@ -49,9 +48,8 @@ int main(void) {
   /*   refresh(); */
   /* } */
 
-clean_exit:
+/* clean_exit: */
   render_destroy();
   printf("Thank you for playing!\n");
-  hello_runtime();
   return 0;
 }

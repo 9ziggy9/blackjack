@@ -1,7 +1,8 @@
 #include "../include/runtime.h"
 
-void hello_runtime() {
-  printf("Hello, from your runtime");
+RunTime quit() {
+  printf("Goodbye!\n");
+  return QUIT;
 }
 
 RunTime game(Deck *deck, Hand *player_hand, Hand *dealer_hand) {
@@ -15,7 +16,7 @@ RunTime game(Deck *deck, Hand *player_hand, Hand *dealer_hand) {
     case 'q': return QUIT;
     case 'h':
       if (hit_hand(player_hand, deck) == BUSTED) return QUIT;
-      return START;
+      return GAME;
     case 's':
       while (hit_hand(dealer_hand, deck) != BUSTED) {
 	msleep(500);

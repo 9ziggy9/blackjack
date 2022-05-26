@@ -12,7 +12,7 @@ typedef enum {
   QUIT
 } RunTime;
 
-void hello_runtime();
+RunTime quit();
 RunTime game(Deck *deck, Hand *player_hand, Hand *dealer_hand);
 
 #endif
