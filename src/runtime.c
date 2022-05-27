@@ -32,7 +32,8 @@ RunTime game(Deck *deck, Hand *player_hand, Hand *dealer_hand) {
   }
 }
 
-RunTime game_over(Deck *deck, Hand *player_hand, Hand *dealer_hand) {
+RunTime game_over(Deck *deck, Hand *player_hand,
+		  Hand *dealer_hand, int *game_count) {
   char ch;
   // runtime rendering, will update
   render_hand(*player_hand);
@@ -43,6 +44,11 @@ RunTime game_over(Deck *deck, Hand *player_hand, Hand *dealer_hand) {
   switch((ch = getch())) {
     case 'q': return QUIT;
     case 'n':
+      game_count++;
+      if (*game_count > 1) {
+	*deck = assemble_deck();
+	shuffle_deck(deck);
+      }
       init_hands(deck, player_hand, dealer_hand);
       clear();
       refresh();

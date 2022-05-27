@@ -16,13 +16,17 @@ int main(void) {
   Hand dealer_hand;
   init_hands(&deck, &player_hand, &dealer_hand);
 
+  // Number of deals between shuffles
+  int GAME_COUNT = 0;
+
   // initialize curses system
   render_init();
 
   RunTime runtime = GAME;
   while (runtime != QUIT) {
     if (runtime == GAME) runtime = game(&deck, &player_hand, &dealer_hand);
-    if (runtime == GAMEOVER) runtime = game_over(&deck, &player_hand, &dealer_hand);
+    if (runtime == GAMEOVER) runtime = game_over(&deck, &player_hand,
+						 &dealer_hand, &GAME_COUNT);
     refresh();
   }
 
@@ -48,5 +52,6 @@ int main(void) {
 /* clean_exit: */
   render_destroy();
   printf("Thank you for playing!\n");
+  print_deck(deck);
   return 0;
 }
