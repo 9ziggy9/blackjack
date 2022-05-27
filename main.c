@@ -12,16 +12,12 @@ int main(void) {
   shuffle_deck(&deck);
 
   // initialize hands
-  Hand player_hand = new_hand(PLAYER);
-  Hand dealer_hand = new_hand(DEALER);
-  hit_hand(&player_hand, &deck);
-  hit_hand(&dealer_hand, &deck);
+  Hand player_hand;
+  Hand dealer_hand;
+  init_hands(&deck, &player_hand, &dealer_hand);
 
   // initialize curses system
   render_init();
-
-  // initialization time rendering, will not update
-  render_usage();
 
   RunTime runtime = GAME;
   while (runtime != QUIT) {

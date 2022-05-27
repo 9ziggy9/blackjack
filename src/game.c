@@ -81,6 +81,14 @@ Decision dealer_action(const Hand hand) {
   else return HIT;
 }
 
+void init_hands(Deck *deck, Hand *player_hand, Hand *dealer_hand) {
+  *player_hand = new_hand(PLAYER);
+  *dealer_hand = new_hand(DEALER);
+  hit_hand(player_hand, deck);
+  hit_hand(dealer_hand, deck);
+  hit_hand(player_hand, deck);
+}
+
 int msleep(long msec) {
   struct timespec ts;
   int res;

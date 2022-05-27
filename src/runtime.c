@@ -11,6 +11,7 @@ RunTime game(Deck *deck, Hand *player_hand, Hand *dealer_hand) {
   render_hand(*player_hand);
   render_hand(*dealer_hand);
   render_scores(*player_hand, *dealer_hand);
+  render_usage();
   // end runtime rendering
   switch((ch = getch())) {
     case 'q': return QUIT;
@@ -41,6 +42,11 @@ RunTime game_over(Deck *deck, Hand *player_hand, Hand *dealer_hand) {
   // end runtime rendering
   switch((ch = getch())) {
     case 'q': return QUIT;
+    case 'n':
+      init_hands(deck, player_hand, dealer_hand);
+      clear();
+      refresh();
+      return GAME;
     default: return GAMEOVER;
   }
 }

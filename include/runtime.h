@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include "../include/render.h"
+#include "../include/game.h"
 
 typedef enum {
   START,
